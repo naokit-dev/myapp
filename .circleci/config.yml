@@ -81,14 +81,7 @@ jobs:
           command: |
             bin/rails test
             bin/rails test:system
-  deploy:
 workflows:
   test_and_deploy:
     jobs:
       - test
-      - deploy:
-          requires:
-            - test
-          filters:
-            branches:
-              only: master
