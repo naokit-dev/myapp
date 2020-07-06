@@ -1,6 +1,11 @@
 # config valid for current version and patch releases of Capistrano
 lock "3.14.1"
 
+set :rbenv_ruby, '2.7.1'
+set :rbenv_type, :user # or :system
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+
+
 set :application, "myapp"
 set :repo_url, "git@github.com:naokit1030/myapp.git"
 
@@ -41,6 +46,5 @@ set :keep_releases, 5
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :rbenv_ruby, '2.7.1'
 set :log_level, :debug
 
