@@ -2,7 +2,7 @@ version: 2.1
 
 executors:
   default:
-    working_directory: ~/sample
+    working_directory: ~/myapp
     docker:
       - image: circleci/ruby:2.7.1-node-browsers
         environment:
@@ -10,14 +10,14 @@ executors:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
-          PGHOST: db-myapp.cee3em3ulthp.ap-northeast-1.rds.amazonaws.com
+          PGHOST: 127.0.0.1
           PGUSER: postgres
-          PGPASSWORD: password
+          PGPASSWORD: ""
       - image: circleci/postgres:11.6-alpine
         environment:
-          POSTGRES_USER:
-          POSTGRES_DB:
-          POSTGRES_PASSWORD:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: myapp_test
+          POSTGRES_PASSWORD:""
 
 commands:
   setup:
@@ -45,7 +45,7 @@ commands:
           paths:
             - vendor/bundle
 
-      # 以下はRails6でWebpackerを使う場合は必須
+      # Webpackerを使う場合は必須
       - restore_cache:
           keys:
             - yarn-cache-v1-{{ checksum "yarn.lock" }}
@@ -81,7 +81,26 @@ jobs:
           command: |
             bin/rails test
             bin/rails test:system
+
+  deploy:
+    executor: default
+    steps:
+      - checkout
+      - setup
+      - add_ssh_keys:
+          fingerprints:
+            - 21:fe:de:92:7a:96:62:bd:29:b9:38:99:aa:e2:ae:6f
+      - deploy:
+          name: Deploy with Capistrano
+          command: bundle exec cap production deploy
+
 workflows:
   test_and_deploy:
     jobs:
       - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
