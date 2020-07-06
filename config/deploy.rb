@@ -27,7 +27,7 @@ set :deploy_to, "/var/www/myapp"
 
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push('config/settings.yml')
-append :linked_files, "config/master.key"
+#append :linked_files, "config/master.key"
 
 
 # Default value for linked_dirs is []
