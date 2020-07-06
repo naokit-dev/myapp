@@ -13,7 +13,7 @@ executors:
           PGHOST: 127.0.0.1
           PGUSER: postgres
           PGPASSWORD: ""
-      - image: circleci/postgres:11.6-alpine
+      - image: circleci/postgres:11.6-alpine-ram
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: myapp_test

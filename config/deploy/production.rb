@@ -1,5 +1,5 @@
 server '54.238.15.249',
-   user: "ec2-user",
+   user: "sample_app",
    roles: %w{web app},
    ssh_options: {
        port: 22,
