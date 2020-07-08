@@ -79,11 +79,13 @@ header a {
   /* footer */
 
 footer {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
     background-color: #114B5F;
     height: 80px;
     margin-top: 45px;
     padding-top: 5px;
-    border-top: 1px solid #eaeaea;
     color: #fff;
   }
   
