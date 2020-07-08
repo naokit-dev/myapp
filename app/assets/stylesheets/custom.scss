@@ -119,3 +119,10 @@ footer {
     background-size: cover;
     background-position: center center;
 }
+
+
+  /* Devise */
+  .devise-form {
+      @extend .container-fluid;
+      max-width: 60vw;
+  }
