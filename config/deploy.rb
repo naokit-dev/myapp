@@ -27,7 +27,7 @@ set :pty, true
 # Default value for :linked_files is []
 #set :linked_files, fetch(:linked_files, []).push('config/settings.yml')
 set :linked_files, fetch(:linked_files, []).push(
-#  'config/database.yml',
+# 'config/database.yml',
   'config/master.key',
 #  '.env'
 )
@@ -49,4 +49,16 @@ set :keep_releases, 5
 # set :ssh_options, verify_host_key: :secure
 
 set :log_level, :debug
+
+#db config
+set :pg_without_sudo, false
+set :pg_host, 'db-myapp.cee3em3ulthp.ap-northeast-1.rds.amazonaws.com'
+set :pg_database, 'myapp_production'
+set :pg_username, 'postgres'
+set :pg_password, 'password' #ENV['DATABASE_USER_PASSWORD'] 
+
+host: 
+  database: myapp_production
+  username: postgres
+  password: password
 
