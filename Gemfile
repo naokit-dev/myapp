@@ -40,7 +40,6 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
-  gem 'capistrano-postgresql'
 end
 
 group :development do
