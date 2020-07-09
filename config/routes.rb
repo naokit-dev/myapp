@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :articles
   devise_for :users
   resources :users
+  resources :articles
+
 
   root 'static_pages#home'
   get  '/help',    to: 'static_pages#help'
