@@ -1,5 +1,7 @@
-<h1>New Note</h1>
+<%= form_with url: root_path do |form| %>
+  <%= form.text_field :title %>
+  <%= form.text_area :content %>
+  <%= form.submit %>
+<% end %>
 
-<%= render 'form', note: @note %>
-
-<%= link_to 'Back', notes_path %>
+  <div>markdown(@article.content).html_safe</div>

@@ -5,6 +5,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- Vue.js -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'></script>
+    <!-- marked.js -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.js'></script>
+
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!--[if lt IE 9]>
@@ -15,7 +20,7 @@
   <body>
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash_messages' %>
-    <div class="container">
+    <div class="container-fluid">
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>
