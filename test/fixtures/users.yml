@@ -8,5 +8,6 @@
 # column: value
 #
 naoki:
+    username: naokit
     email: "user@mail.com"
 
