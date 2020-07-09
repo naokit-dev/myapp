@@ -7,4 +7,6 @@
 #test_user: {}
 # column: value
 #
+naoki:
+    email: "user@mail.com"
 

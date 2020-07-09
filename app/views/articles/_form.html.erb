@@ -1,0 +1,53 @@
+  <% if article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+        <% article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row" id="editor">
+    <%= bootstrap_form_with(model: @user, local: true) do |f| %>
+    <div class="col-12">
+      <%= f.text_field :tittle,
+                          autofocus: true,
+                          placeholder: 'タイトル',
+                          id: 'article_title' %>
+    </div>
+
+    <div class="col-md-6">
+
+      <%= f.text_area :contet, class: 'editor_parts', id: 'article_content',
+                        placeholder: '本文',
+                        "v-model" => "input", name: "article[content]" %>
+    </div>
+
+    <div class="col-md-6">
+      <label>Preview</label>
+      <!-- リアルタイムプレビュー -->
+      <div class="editor_parts form-control overflow-auto" id="preview_area">
+              <div v-html='input | marked'></div>
+      </div>
+    </div>
+    <div class="col-12">
+      <%= f.submit "投稿", class: 'btn btn-primary form-control' %>
+    </div>
+    <% end %>
+  </div>
+
+<script type="text/javascript">
+    window.onload = function() {
+      new Vue({
+        el: '#editor',
+      data: {
+        input: '<%== j@article.content %>',
+      },
+      filters: {
+        marked: marked,
+      },
+    });
+  };
+</script>
