@@ -1,13 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="article-view container">
+  <ul class="nav justify-content-end">
+  <li class="nav-item">
+    <%= link_to "編集", edit_article_path(@article), class: "nav-link" %>
+  <li class="nav-item">
+    <%= link_to "削除", article_path(@article), method: :delete,  class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="<%= TweetUriEncord(text: @article.title, hashtags: "beaware") %>" target=_blank rel=noopner ><i class="fab fa-twitter-square"></i></a>
+  </li>
+</ul>
+<div class="row">
+  <div class="col-2">
+    <h4>Article info</h4>
+    <ul>
+      <li>
+        Auther: <a class="nav-link active" href="<%= user_path(@writer) %>"><%= @article.user.username %></a>
+      </li>
+      <li>
+        Accepted at: <%= @article.created_at%>
+      </li>
+      <li>
+        Updated at: <%= @article.updated_at%>
+      </li>
+    </ul>
+    <% if toc(@article.content) %>
+    <div class="outline">
+      <h4>Outline</h4>
+      <%= toc(@article.content) %>
+    </div>
+    <% end %>
+  </div>
+  <div class="col-10">
+    <h1>Sample title</h1>
+    <div class="card bg-light mb-5">
+      <div class="card-body">
+        <h4>Abstract</h4>
+        <hr/>
+        <h4><%= @article.title %></h4>
+      </div>
+    </div>
+  <p>
+    <%= markdown(@article.content) %>
+  </p>
+  </div>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
-
-<p>
-  <%= markdown(@article.content).html_safe %>
-</p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+</div>

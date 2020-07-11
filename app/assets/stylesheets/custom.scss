@@ -1,11 +1,17 @@
-@import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'rouge';
+
+/* custom color */ 
+$midnight-green-eagle-green: #114b5fff;
+$illuminating-emerald: #1a936fff;
+$granny-smith-apple: #88d498ff;
+$tea-green: #c6dabfff;
+$champagne: #f3e9d2ff;
 
 /* universal */
 
 body {
     background-color: #F3E9D2;
-    padding-top: 60px;
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -37,7 +43,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 3em;
     letter-spacing: -2px;
     margin-bottom: 30px;
-    text-align: center;
   }
 
   h2 {
@@ -57,22 +62,22 @@ h1, h2, h3, h4, h5, h6 {
   /* header */
 header {
     background-color: #1A936F;
-    height: 80px;
 }
-
 header a {
     color: #fff;
   }
-
 #logo {
+    vertical-align: middle;
     float: left;
     margin-right: 10px;
-    font-size: 1.7em;
+    font-size: 2em;
     color: #fff;
     letter-spacing: -1px;
-    padding-top: 9px;
     font-weight: bold;
   }
+  .fa-exclamation {
+  vertical-align: text-top;
+}
 
   #logo:hover {
     color: #fff;
@@ -80,36 +85,24 @@ header a {
   }
 
   /* footer */
-
 footer {
+    margin-top: 30px;
     background-color: #114B5F;
     height: 80px;
-    margin-top: 45px;
     padding-top: 5px;
     color: #fff;
   }
-
   footer a {
     color: #fff;
   }
-
   footer a:hover {
     color: #222;
   }
-
   footer small {
-    float: left;
+    display:block;
+    text-align: center;
   }
 
-  footer ul {
-    float: right;
-    list-style: none;
-  }
-
-  footer ul li {
-    float: left;
-    margin-left: 15px;
-  }
 
 
   /* home */
@@ -130,21 +123,48 @@ footer {
   }
 
 
+/* user-show */
+.container-fluid {
+  padding: 10px 30px;
+}
+.pagination {
+  justify-content: end;
+}
+
+
+
   /* editor form */
   .editor-form {
-      @extend .container;
-      height: 90vh;
+    text-align: left;
   }
-  
-  input#article_title {
-      margin: 0px 17px;
+  .editor-form.container-fluid {
+      height: 90vh;
+      padding: 10px 30px;
+  }
+  h1.editor-form {
+    margin: 10px 0;
+    text-align: right;
+  }
+  textarea#article_title {
+    height: 6em;
   }
   textarea.editor_parts {
-    height: 60vh;
+      height: 65vh;
   }
   div.editor_parts {
-    height: 60vh;
+      height: 65vh;
   }
   .editor_parts#preview_area {
       background-color: whitesmoke;
   }
+/* article viewer */
+.article-view {
+  text-align: left;
+  background-color: whitesmoke;
+}
+.article-view.container {
+  margin: 15px auto;
+}
+// h4.article-view {
+//   text-align: center;
+// }

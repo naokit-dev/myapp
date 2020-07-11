@@ -1,11 +1,11 @@
 <footer class="footer">
-<small>
-    © 2020 TAKESHITA NAOKI
-</small>
-<nav>
-    <ul>
-    <li><%= link_to "About", about_path %></li>
-    <li><%= link_to "Contact", contact_path %></li>
-    </ul>
-</nav>
-</footer>
+    <nav class="navbar navbar-expand-lg  justify-content-center">
+        <div class="navbar-nav">
+                <%= link_to "About", about_path, class: "nav-item nav-link" %>
+                <%= link_to "Contact", contact_path, class: "nav-item nav-link" %>
+        </div>
+    </nav>
+    <div>
+        <small>© 2020 TAKESHITA NAOKI</small>
+    </div>
+ </footer>

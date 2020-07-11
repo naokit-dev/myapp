@@ -1,5 +1,5 @@
-<h1>Editing Article</h1>
-
+<% provide(:form_title, "Editing Article") %>
+<% provide(:btn_name, "Update") %>
 <%= render 'form', article: @article %>
 
 <%= link_to 'Show', @article %> |

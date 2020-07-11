@@ -1,3 +1,4 @@
+
   <% if article.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
@@ -9,39 +10,42 @@
       </ul>
     </div>
   <% end %>
-  <div class="row" id="editor">
-    <%= bootstrap_form_with(model: @user, local: true) do |f| %>
-    <div class="col-12">
-      <%= f.text_field :tittle,
-                          autofocus: true,
-                          placeholder: 'タイトル',
-                          id: 'article_title' %>
+  <div class="editor-form container-fluid">
+    <%= bootstrap_form_with(model: @article, local: true) do |f| %>
+
+    <div class="row" id="editor">
+    <div class="col-md-4 order-md-2">
+    <h1 class="editor-form"><%= yield(:form_title) %></h1>
+    <%= f.submit yield(:btn_name), class: 'btn btn-primary form-control' %>
     </div>
-
-    <div class="col-md-6">
-
-      <%= f.text_area :contet, class: 'editor_parts', id: 'article_content',
-                        placeholder: '本文',
-                        "v-model" => "input", name: "article[content]" %>
-    </div>
-
-    <div class="col-md-6">
-      <label>Preview</label>
-      <!-- リアルタイムプレビュー -->
-      <div class="editor_parts form-control overflow-auto" id="preview_area">
-              <div v-html='input | marked'></div>
+      <div class="col-md-8 order-md-1" >
+        <%= f.text_area :title, label: "Abstract",
+                            autofocus: true,
+                            placeholder: '気づきや体験を140文字以内で書こう',
+                            id: 'article_title' %>
       </div>
+
+      <div class="col-md-6  order-md-3">
+        <%= f.text_area :contet, class: 'editor_parts', id: 'article_content',
+                          placeholder: '本文',
+                          "v-model" => "input", name: "article[content]" %>
+      </div>
+
+      <div class="col-md-6  order-md-4">
+        <label>Preview</label>
+        <div v-html='input | marked' class="editor_parts form-control overflow-auto" id="preview_area">
+        </div>
+      </div>
+      <div class="col-12">
+      </div>
+      <% end %>
     </div>
-    <div class="col-12">
-      <%= f.submit "投稿", class: 'btn btn-primary form-control' %>
-    </div>
-    <% end %>
   </div>
 
 <script type="text/javascript">
-    window.onload = function() {
-      new Vue({
-        el: '#editor',
+  window.onload = function() {
+    new Vue({
+      el: '#editor',
       data: {
         input: '<%== j@article.content %>',
       },
@@ -51,3 +55,4 @@
     });
   };
 </script>
+
