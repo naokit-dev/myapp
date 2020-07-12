@@ -38,25 +38,37 @@ gem 'devise-bootstrap-views'
 
 # markdown
 gem 'redcarpet'
-gem 'coderay'
 gem 'rouge'
 
 # form
 gem 'bootstrap_form'
-
 # pagination
 gem 'kaminari'
-
+# URI encorder
 gem 'addressable', require: 'addressable/uri'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # capistrano
   gem 'capistrano', '3.14.1'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
+
+  # Test enviroment: Rspec
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
+  gem 'guard'
+  gem 'guard-rspec', require: false
+
+  # Test enviroment: Fake date generator
+  gem 'factory_bot_rails'
+	gem 'faker'
+  gem 'forgery_ja'
+
 end
 
 group :development do
@@ -74,10 +86,9 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  gem 'minitest'
-  gem 'minitest-reporters'
-  gem 'guard'
-  gem 'guard-minitest'
+  # gem 'minitest'
+  # gem 'minitest-reporters'
+  # gem 'guard-minitest'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
