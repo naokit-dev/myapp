@@ -46,6 +46,9 @@ gem 'bootstrap_form'
 gem 'kaminari'
 # URI encorder
 gem 'addressable', require: 'addressable/uri'
+# twitter
+gem 'twitter'
+gem 'omniauth-twitter'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
