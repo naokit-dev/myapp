@@ -4,8 +4,7 @@ services:
   db:
     image: postgres:11.0-alpine
     volumes:
-      - postgres:/var/lib/postgresql/data
-      - ./log:/root/log:cached
+      - postgres:/var/lib/postgresql/data:cached
     environment:
       - TZ=Asia/Tokyo
     ports:
@@ -21,9 +20,14 @@ services:
       context: .
     command: ash -c "rm -f tmp/pids/server.pid && ./bin/rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/myapp
-      - rails_cache:/app/tmp/cache
-      - bundle:/bundle
+      - .:/myapp:cached
+      - bundle:/bundle:cached
+      - node_modules:/app/node_modules:cached
+      # 1. exclude volumes
+      - /app/vendor
+      - /app/tmp
+      - /app/log
+      - /app/.git
     tmpfs:
       - /tmp
     tty: true
@@ -34,27 +38,26 @@ services:
       DATABASE_PORT: 5432
       DATABASE_USER: postgres
       DATABASE_PASSWORD: password
-#      WEBPACKER_DEV_SERVER_HOST: webpacker
+      WEBPACKER_DEV_SERVER_HOST: webpacker
     depends_on:
       - db
-  # webpacker:
-  #   build: .
-  #   environment:
-  #     NODE_ENV: development
-  #     RAILS_ENV: development
-  #     WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
-  #   command: ./bin/webpack-dev-server
-  #   volumes:
-  #     - .:/webpacker-myapp
-  #   tty: true
-  #   stdin_open: true
-  #   ports:
-  #     - '3035:3035'
-  #   depends_on:
-  #     - app
+  webpacker:
+    build: .
+    environment:
+      NODE_ENV: development
+      RAILS_ENV: development
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+    command: ./bin/webpack-dev-server
+    volumes:
+      - .:/webpacker-myapp
+    tty: true
+    stdin_open: true
+    ports:
+      - '3035:3035'
+    depends_on:
+      - app
 
 volumes:
   postgres:
   bundle:
-  rails_cache:
   node_modules:

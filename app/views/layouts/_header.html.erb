@@ -1,38 +1,39 @@
-    <header class="sticky-top">
-      <nav class="navbar navbar-expand-lg">
-        <%= link_to root_path, class: "navbar-brand", id: "logo"  do %>
-          be Aware <i class="fas fa-exclamation"></i>
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg">
+    <%= link_to root_path, class: "navbar-brand", id: "logo"  do %>
+    be Aware <i class="fas fa-exclamation"></i>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="nav navbar-nav justify-content-end">
+        <% if user_signed_in? %>
+        <li class="nav-item"><%= link_to new_article_path, class: "nav-link" do %>
+          <i class="far fa-edit"></i> Write now!
+          <% end %>
+        </li>
+        <li class="nav-item"><%= link_to user_path(current_user), class: "nav-link"  do %>
+          <i class="far fa-id-card"></i> My page
+          <% end %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <strong><%= current_user.username %></strong> <i class="fas fa-user-circle"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item"%>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+          </div>
+        </li>
+        <% else %>
+        <li class="nav-item"><%= link_to "Sign up", new_user_registration_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>
         <% end %>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <ul class="nav navbar-nav justify-content-end">
-            <% if user_signed_in? %>
-              <li class="nav-item"><%= link_to new_article_path, class: "nav-link" do %>
-                <i class="far fa-edit"></i> Write now!
-              <% end %>
-              </li>
-              <li class="nav-item"><%= link_to user_path(current_user), class: "nav-link"  do %>
-                <i class="far fa-id-card"></i> My page
-              <% end %>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <strong><%= current_user.username %></strong> <i class="fas fa-user-circle"></i> 
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item"%>
-                  <div class="dropdown-divider"></div>
-                  <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
-                </div>
-              </li>
-            <% else %>
-              <li class="nav-item"><%= link_to "Sign up", new_user_registration_path, class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>
-            <% end %>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
+      </ul>
+    </div>
+  </nav>
+</header>
