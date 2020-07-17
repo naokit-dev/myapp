@@ -15,7 +15,7 @@
         <div class="col-md-6">
             <div class="cover right">
                 <div class="cover-img" id="img1">
-                    <%= image_tag '/assets/top1.svg', class: "img-fluid", id: "img1" %>
+                    <%= image_tag asset_path('top1.svg', class: "img-fluid", id: "img1", alt: "fast") %>
                     <div>
                         <h1>Fast & Easy</h1>
                         <p>すぐ書ける、どこでも、いつでも</p>
@@ -26,10 +26,10 @@
                         <h1>Share</h1>
                         <p>コードを共有する、見てもらう</p>
                     </div>
-                    <%= image_tag '/assets/top2.svg', class: "img-fluid", id: "img2" %>
+                    <%= image_tag asset_path('/top2.svg', class: "img-fluid", id: "img2", alt: "share") %>
                 </div>
                 <div class="cover-img" id="img3">
-                    <%= image_tag '/assets/top3.svg', class: "img-fluid", id: "img3" %>
+                    <%= image_tag asset_path('top3.svg', class: "img-fluid", id: "img3", alt: "stock") %>
                     <div>
                         <h1>Stock</h1>
                         <p>忘れない、あなたの代わりに</p>
