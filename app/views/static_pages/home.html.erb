@@ -1,6 +1,41 @@
 <% provide(:title, "Home") %>
 
-<div class="center jumbotron topcover">
+<div class="container-fluid cover">
+    <div class="row cover">
+        <div class="col-md-6 left">
+            <div class="cover-message">
+                <h1 class="display-1">mdClip<i class="fas fa-exclamation"></i></h1>
+                <p>mdClip!はオンラインMarkdownエディタです<br>美しくシンタックスハイライトされたコードを生成<br>ユーザー登録無しで利用することもできます</p>
+                <div class="btn-link">
+                    <%= link_to "Sign up now", '#', class: "btn btn-lg btn-cover" %>
+                    <%= link_to "Login as Guest", users_guest_sign_in_path, method: :post, class: "btn btn-lg btn-cover" %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="cover right">
+                <div class="cover-img" id="img1">
+                    <%= image_tag '/assets/top1.svg', class: "img-fluid", id: "img1" %>
+                    <div>
+                        <h1>Fast & Easy</h1>
+                        <p>すぐ書ける、どこでも、いつでも</p>
+                    </div>
+                </div>
+                <div class="cover-img" id="img2">
+                    <div>
+                        <h1>Share</h1>
+                        <p>コードを共有する、見てもらう</p>
+                    </div>
+                    <%= image_tag '/assets/top2.svg', class: "img-fluid", id: "img2" %>
+                </div>
+                <div class="cover-img" id="img3">
+                    <%= image_tag '/assets/top3.svg', class: "img-fluid", id: "img3" %>
+                    <div>
+                        <h1>Stock</h1>
+                        <p>忘れない、あなたの代わりに</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<%= link_to "Sign up now", '#', class: "btn btn-lg btn-primary center" %>
-<%= link_to "Login as Guest", users_guest_sign_in_path, method: :post, class: "btn btn-lg btn-primary center" %>

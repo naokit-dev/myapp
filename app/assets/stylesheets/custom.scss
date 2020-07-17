@@ -7,11 +7,17 @@ $granny-smith-apple: #88d498ff;
 $tea-green: #c6dabfff;
 $champagne: #f3e9d2ff;
 
+$gainsboro: #dcdcddff;
+$silver: #c5c3c6ff;
+$davys-grey: #46494cff;
+$black-coral: #4c5c68ff;
+$blue-munsell: #1985a1ff;
+
 /* universal */
 
 body {
-  background-color: #f3e9d2;
-  min-height: 100%;
+  background-color: #4c5c68ff;
+  color: white;
   display: flex;
   flex-direction: column;
 }
@@ -20,17 +26,10 @@ section {
   overflow: auto;
 }
 
-textarea {
-  resize: vertical;
-}
+// textarea {
+//   resize: vertical;
+// }
 
-.center {
-  text-align: center;
-}
-
-.center h1 {
-  margin-bottom: 10px;
-}
 
 /* typography */
 
@@ -50,12 +49,9 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 2.4em;
   letter-spacing: -1px;
   margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #777;
 }
 
 p {
@@ -65,11 +61,12 @@ p {
 
 /* header */
 header {
-  background-color: #1a936f;
+  height: 10vh;
+  background-color: #1985a1ff;
 }
 
 header a {
-  color: #fff;
+  color: white;
 }
 
 #logo {
@@ -77,7 +74,6 @@ header a {
   float: left;
   margin-right: 10px;
   font-size: 2em;
-  color: #fff;
   letter-spacing: -1px;
   font-weight: bold;
 }
@@ -87,25 +83,19 @@ header a {
 }
 
 #logo:hover {
-  color: #fff;
   text-decoration: none;
 }
 
 /* footer */
 footer {
   margin-top: 30px;
-  background-color: #114b5f;
+  background-color: #46494C;
   height: 80px;
   padding-top: 5px;
-  color: #fff;
 }
 
 footer a {
-  color: #fff;
-}
-
-footer a:hover {
-  color: #222;
+  color: white;
 }
 
 footer small {
@@ -114,13 +104,62 @@ footer small {
 }
 
 /* home */
-.topcover {
-  height: 600px;
-  margin-top: 30px;
-  background-image: url("/images/top_cover.png");
+.cover.container-fluid {
+  height: 90vh;
+}
+
+.cover-message {
+  text-align: left;
+  margin-top: 15%;
+  margin-left: 15%;
+}
+
+.cover-message h1.display-1,
+.cover-message p {
+  color: #dcdcddff;
+}
+
+.cover-message p {
+  line-height: 2;
+}
+
+.btn-link {
+  margin: 10% 0;
+  display: flex;
+}
+
+.btn-cover {
+  margin-right: 5%;
+  background-color: #1985a1ff;
+  border-color: #1985a1ff;
+  color: #dcdcddff;
+}
+
+.cover-img {
+  display: flex;
+  justify-content: space-between;
+  height: 24vh;
+  margin: 2vh 0;
+  padding: 20px;
+  opacity: 0.9;
+  color: #4c5c68ff;
+  background-color: #dcdcddff;
+  background-size: contain;
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
+  border-radius: 20px;
+}
+
+.cover-img img {
+  height: 100%;
+}
+
+.cover-img#img1,
+.cover-img#img3 {
+  text-align: right;
+}
+
+.cover-img#img2 {
+  text-align: left;
 }
 
 /* Devise */
