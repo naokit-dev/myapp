@@ -16,6 +16,30 @@
     <div class="col-md-4 order-md-2">
       <h1 class="editor-form"><%= yield(:form_title) %></h1>
       <%= f.submit yield(:btn_name), class: 'btn btn-primary form-control' %>
+      <!-- 切り替えボタンの設定 -->
+      <button type="button" class="btn btn-primary" onclick="$('#staticBackdrop').modal('show')">
+        ココを押すと表示
+      </button>
+
+      <!-- モーダルの設定 -->
+      <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">記事固有パスワード</h5>
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= @article.guest_token %>
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="col-md-8 order-md-1">
       <%= f.text_area :title, label: "Title",
@@ -52,4 +76,14 @@
       },
     });
   };
+</script>
+<script>
+  jQuery(function ($) {
+    $('#staticBackdrop').modal('show');
+  });
+</script>
+<script>
+  $(function () {
+    $('#staticBackdrop').modal('show');
+  })
 </script>

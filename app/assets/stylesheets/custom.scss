@@ -79,6 +79,11 @@ ul {
   list-style: none;
 }
 
+div.alert {
+  margin-bottom: 0px;
+}
+
+
 /* header */
 header {
   height: 10vh;
@@ -225,8 +230,7 @@ div.editor_parts {
   height: 65vh;
 }
 
-.editor_parts#preview_area {
-}
+.editor_parts#preview_area {}
 
 /* article viewer */
 .article-view {

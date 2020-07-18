@@ -15,4 +15,11 @@ class User < ApplicationRecord
     end
   end
 
+  def self.mdguest
+    find_or_create_by(username: "mdGuest") do |user|
+      user.username = "mdGuest"
+      user.email = "#{SecureRandom.hex(10)}@mduser.com"
+      user.password = SecureRandom.hex(10)
+    end
+  end
 end

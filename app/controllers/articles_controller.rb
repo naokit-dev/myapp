@@ -16,7 +16,11 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @article = current_user.articles.build
+    if user_signed_in?
+      @article = current_user.articles.build
+    else
+      @article = User.mdguest.articles.build
+    end
   end
 
   # GET /articles/1/edit
@@ -26,7 +30,11 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article = current_user.articles.build(article_params)
+    if user_signed_in?
+      @article = current_user.articles.build(article_params)
+    else
+      @article = User.mdguest.articles.build(article_params)
+    end
 
     respond_to do |format|
       if @article.save
