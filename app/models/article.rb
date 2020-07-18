@@ -1,13 +1,12 @@
 class Article < ApplicationRecord
   belongs_to :user 
-  require 'hashie'
+  attribute :url_token, :string, default: SecureRandom.urlsafe_base64(8)
+  # validates :url_token, presence: true, uniqueness: true
 
-  def self.create_initial_articles
-    articles = Hashie::Mash.load("app/initial_articles.yml")
-    puts articles
-    articles.each do |article|
-      self.new(title: article.title, content: article.content)
-    end
+  def to_param
+    url_token
   end
+
+
 end
 

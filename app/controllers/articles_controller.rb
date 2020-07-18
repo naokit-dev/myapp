@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    @article = Article.find(params[:id])
+    @article = Article.find_by(url_token: params[:url_token])
     @writer = @article.user
   end
 
@@ -66,7 +66,7 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      @article = Article.find_by(url_token: params[:url_token])
     end
 
     # Only allow a list of trusted parameters through.

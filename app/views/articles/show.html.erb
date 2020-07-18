@@ -32,7 +32,8 @@
               <%= link_to "削除", article_path(@article), method: :delete,  class: "nav-link" %>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<%= TweetUriEncord(text: @article.title, hashtags: "beaware") %>" target=_blank
+              <a class="nav-link"
+                href="<%= TweetUriEncord(text: @article.title, url: request.url, hashtags: "mdClip") %>" target=_blank
                 rel=noopner><i class="fab fa-twitter-square fa-2x"></i></a>
             </li>
           </ul>
