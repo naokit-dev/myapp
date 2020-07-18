@@ -17,19 +17,33 @@ $blue-munsell: #1985a1ff;
 
 body {
   background-color: #4c5c68ff;
-  color: white;
+  color: whitesmoke;
   display: flex;
-  flex-direction: column;
+  flex-flow: column;
+  min-height: 100vh;
 }
 
 section {
   overflow: auto;
 }
 
+.style-important {
+  background-color: #46494cff;
+  opacity: 0.6;
+}
+
+a {
+  color: whitesmoke;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: white;
+}
+
 // textarea {
 //   resize: vertical;
 // }
-
 
 /* typography */
 
@@ -59,6 +73,12 @@ p {
   line-height: 1.7em;
 }
 
+/* components */
+
+ul {
+  list-style: none;
+}
+
 /* header */
 header {
   height: 10vh;
@@ -67,6 +87,7 @@ header {
 
 header a {
   color: white;
+  text-decoration: none;
 }
 
 #logo {
@@ -88,14 +109,14 @@ header a {
 
 /* footer */
 footer {
-  margin-top: 30px;
-  background-color: #46494C;
+  background-color: #46494c;
   height: 80px;
   padding-top: 5px;
 }
 
 footer a {
   color: white;
+  text-decoration: none;
 }
 
 footer small {
@@ -129,6 +150,7 @@ footer small {
 }
 
 .btn-cover {
+  width: 150px;
   margin-right: 5%;
   background-color: #1985a1ff;
   border-color: #1985a1ff;
@@ -169,9 +191,9 @@ footer small {
 }
 
 /* user-show */
-.container-fluid {
-  padding: 10px 30px;
-}
+// .container-fluid {
+//   padding: 10px 30px;
+// }
 
 .pagination {
   justify-content: end;
@@ -184,7 +206,6 @@ footer small {
 
 .editor-form.container-fluid {
   height: 90vh;
-  padding: 10px 30px;
 }
 
 h1.editor-form {
@@ -205,17 +226,22 @@ div.editor_parts {
 }
 
 .editor_parts#preview_area {
-  background-color: whitesmoke;
 }
 
 /* article viewer */
 .article-view {
   text-align: left;
-  background-color: whitesmoke;
 }
 
-.article-view.container {
-  margin: 15px auto;
+.article-view.container-fluid {
+  min-height: 85vh;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.article-info,
+.article-main {
+  padding: 20px 15px;
 }
 
 // h4.article-view {
