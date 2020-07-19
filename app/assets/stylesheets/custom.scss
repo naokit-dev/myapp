@@ -83,7 +83,6 @@ div.alert {
   margin-bottom: 0px;
 }
 
-
 /* header */
 header {
   height: 10vh;
@@ -230,7 +229,8 @@ div.editor_parts {
   height: 65vh;
 }
 
-.editor_parts#preview_area {}
+.editor_parts#preview_area {
+}
 
 /* article viewer */
 .article-view {
@@ -243,8 +243,13 @@ div.editor_parts {
   padding-bottom: 0px;
 }
 
+.article-view .content {
+  min-height: 85vh;
+}
+
 .article-info,
-.article-main {
+.article-main,
+.outline {
   padding: 20px 15px;
 }
 

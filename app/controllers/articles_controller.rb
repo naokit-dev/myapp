@@ -1,20 +1,15 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
-  # GET /articles
-  # GET /articles.json
   def index
     @articles = Article.all
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
   def show
-    @article = Article.find_by(url_token: params[:url_token])
+    # @article = Article.find_by(url_token: params[:url_token])
     @writer = @article.user
   end
 
-  # GET /articles/new
   def new
     if user_signed_in?
       @article = current_user.articles.build
@@ -23,27 +18,25 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # GET /articles/1/edit
   def edit
   end
 
-  # POST /articles
-  # POST /articles.json
   def create
     if user_signed_in?
       @article = current_user.articles.build(article_params)
     else
       @article = User.mdguest.articles.build(article_params)
+      @article.guest_author = true
     end
-
-    respond_to do |format|
-      if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @article }
-      else
-        format.html { render :new }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+    @article.guest_token = SecureRandom.hex(4)
+    if @article.save
+      unless user_signed_in?
+        flash[:alert] = "記事固有パスワード: #{@article.guest_token} ***記事の編集や削除に必要です***"
       end
+      flash[:notice] = 'Article was successfully created.'
+      redirect_to @article
+    else
+        render :new
     end
   end
 
@@ -79,6 +72,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :content)
+      params.require(:article).permit(:title, :content, :url_token, :guest_token, :guest_author)
     end
 end
