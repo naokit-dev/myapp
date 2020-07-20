@@ -34,7 +34,7 @@ class ArticlesController < ApplicationController
       @article = User.mdguest.articles.build(article_params)
       @article.guest_author = true
     end
-    @article.guest_token = SecureRandom.hex(4)
+    @article.create_guest_token
     if @article.save
       unless user_signed_in?
         flash[:alert] = "記事固有パスワード: #{@article.guest_token} ***記事の編集や削除に必要です***"
