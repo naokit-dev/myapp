@@ -87,6 +87,11 @@ div.alert {
   background-color: #1985a1ff;
   border-color: #1985a1ff;
   color: white;
+  text-decoration: none;
+}
+
+.card-body {
+  color: #46494cff;
 }
 
 /* header */
@@ -136,7 +141,7 @@ footer small {
 
 /* home */
 .cover.container-fluid {
-  height: 90vh;
+  height: 80vh;
 }
 
 .cover-message {
@@ -154,12 +159,12 @@ footer small {
   line-height: 2;
 }
 
-.btn-link {
+.btn-cover {
   margin: 10% 0;
   display: flex;
 }
 
-.btn-cover {
+.btn-style-cover {
   width: 150px;
   margin-right: 5%;
   background-color: #1985a1ff;
@@ -201,10 +206,6 @@ footer small {
 }
 
 /* user-show */
-// .container-fluid {
-//   padding: 10px 30px;
-// }
-
 .pagination {
   justify-content: end;
 }

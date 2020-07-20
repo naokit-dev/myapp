@@ -6,9 +6,11 @@
             <div class="cover-message">
                 <h1 class="display-1">mdClip<i class="fas fa-exclamation"></i></h1>
                 <p>mdClip!はオンラインMarkdownエディタです<br>美しくシンタックスハイライトされたコードを生成<br>ユーザー登録なしですぐに利用できます</p>
-                <div class="btn-link">
-                    <%= link_to "Write now!", new_article_path, class: "btn btn-lg btn-cover" %>
-                    <%= link_to "Guest user", users_guest_sign_in_path, method: :post, class: "btn btn-lg btn-cover" %>
+                <div class="btn-cover">
+                    <a href="<%= new_article_path %>" type="button" class="btn btn-lg btn-primary btn-style-cover"
+                        data-dismiss="modal">Write now!</a>
+                    <a href="<%= users_guest_sign_in_path %>" method="post" , type="button"
+                        class="btn btn-lg btn-primary btn-style-cover" data-dismiss="modal">Guest user</a>
                 </div>
             </div>
         </div>

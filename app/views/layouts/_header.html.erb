@@ -9,11 +9,11 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="nav navbar-nav justify-content-end">
-        <% if user_signed_in? %>
         <li class="nav-item"><%= link_to new_article_path, class: "nav-link" do %>
           <i class="far fa-edit"></i> Write now!
           <% end %>
         </li>
+        <% if user_signed_in? %>
         <li class="nav-item"><%= link_to user_path(current_user), class: "nav-link"  do %>
           <i class="far fa-id-card"></i> My page
           <% end %>
@@ -29,9 +29,9 @@
             <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
           </div>
         </li>
-        <% else %>
-        <li class="nav-item"><%= link_to "Sign up", new_user_registration_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>
+        <%# <% else %>
+        <%# <li class="nav-item"><%= link_to "Sign up", new_user_registration_path, class: "nav-link" %></li>
+        <%# <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>
         <% end %>
       </ul>
     </div>
