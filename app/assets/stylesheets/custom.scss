@@ -205,7 +205,11 @@ footer small {
   max-width: 60vw;
 }
 
-/* user-show */
+/* user-page */
+.container.user-page {
+  min-height: 90vh;
+}
+
 .pagination {
   justify-content: end;
 }
