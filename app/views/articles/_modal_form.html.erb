@@ -1,0 +1,30 @@
+<!-- Modal -->
+<div class="modal fade" id=<%= "#{id}" %> tabindex="-1" role="dialog" aria-labelledby=<%= "#{id}CenterTitle" %>
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id=<%= "#{id}CenterTitle" %>>Please enter article password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <% if id == "edit-modal" then %>
+            <% url = edit_article_path(@article) %>
+            <% method = :get %>
+            <% elsif id == "destroy-modal" then %>
+            <% url = article_path(@article) %>
+            <% method = :delete %>
+            <% end %>
+            <%= bootstrap_form_with(url: url, method: method, local: true) do |f| %>
+            <div class="modal-body">
+                <%= f.password_field  :guest_token, hide_label: true, placeholder: "article password" %>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <%= f.submit "Enter", class: 'btn btn-primary' %>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

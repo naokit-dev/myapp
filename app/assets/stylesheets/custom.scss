@@ -83,6 +83,12 @@ div.alert {
   margin-bottom: 0px;
 }
 
+.btn-primary {
+  background-color: #1985a1ff;
+  border-color: #1985a1ff;
+  color: white;
+}
+
 /* header */
 header {
   height: 10vh;
@@ -229,8 +235,7 @@ div.editor_parts {
   height: 65vh;
 }
 
-.editor_parts#preview_area {
-}
+.editor_parts#preview_area {}
 
 /* article viewer */
 .article-view {
@@ -251,6 +256,10 @@ div.editor_parts {
 .article-main,
 .outline {
   padding: 20px 15px;
+}
+
+.modal-content {
+  color: #46494cff;
 }
 
 // h4.article-view {

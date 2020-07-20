@@ -2,7 +2,8 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
-    @articles = Article.all
+    redirect_to root_path
+    # @articles = Article.all
   end
 
   def show
@@ -19,6 +20,11 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    
+    unless @article.authenticate_guest_token(params[:guest_token])
+      flash[:alert] = "Invalid password"
+        redirect_to @article
+    end
   end
 
   def create
@@ -40,8 +46,7 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /articles/1
-  # PATCH/PUT /articles/1.json
+
   def update
     respond_to do |format|
       if @article.update(article_params)
@@ -54,13 +59,15 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # DELETE /articles/1
-  # DELETE /articles/1.json
+
   def destroy
-    @article.destroy
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
-      format.json { head :no_content }
+    unless @article.authenticate_guest_token(params[:guest_token])
+      flash[:alert] = "Invalid password"
+
+      redirect_to @article
+    else
+      @article.destroy
+      redirect_to root_path, notice: 'Article was successfully destroyed.' 
     end
   end
 
