@@ -41,15 +41,16 @@
 </div>
 
 <script type="text/javascript">
-  window.onload = function () {
-    new Vue({
-      el: '#editor',
-      data: {
-        input: '<%== j@article.content %>',
-      },
-      filters: {
-        marked: marked,
-      },
+  window.addEventListener('turbolinks:load',
+    function () {
+      new Vue({
+        el: '#editor',
+        data: {
+          input: '<%== j@article.content %>',
+        },
+        filters: {
+          marked: marked,
+        },
+      });
     });
-  };
 </script>
