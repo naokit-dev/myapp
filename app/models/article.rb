@@ -9,7 +9,7 @@ class Article < ApplicationRecord
 
 
 
-  def self.create_guest_token
+  def create_guest_token
     self.guest_token = SecureRandom.hex(4)
   end
 
