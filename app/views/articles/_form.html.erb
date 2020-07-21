@@ -12,24 +12,24 @@
 <div class="editor container-fluid">
   <%= bootstrap_form_with(model: @article, local: true) do |f| %>
   <div class="row" id="editor">
-    <div class="col-md-4 order-md-1 editor-header">
+    <div class="col-md-4 editor-header">
       <h1><%= yield(:form_title) %></h1>
       <%= f.submit yield(:btn_name), class: 'btn btn-primary btn-block' %>
     </div>
-    <div class="col-md-8 order-md-2 editor-header">
+    <div class="col-md-8 editor-header">
       <%= f.text_area :title, label_as_placeholder: true,
                             autofocus: true,
                             class: 'article-title',
                             id: 'article_title' %>
     </div>
 
-    <div class="col-md-6  order-md-3">
+    <div class="col-md-6">
       <%= f.text_area :content, class: 'editor_parts', id: 'article_content',
                           placeholder: 'markdown',
                           "v-model" => "input" %>
     </div>
 
-    <div class="col-md-6  order-md-4">
+    <div class="col-md-6 d-none d-md-block">
       <label>Preview</label>
       <div v-html='input | marked' class="editor_parts overflow-auto" id="preview_area">
       </div>
