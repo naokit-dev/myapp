@@ -12,10 +12,10 @@
             <% end %>
           </li>
           <li>
-            Accepted at: <%= @article.created_at%>
+            Accepted: <%= l @article.created_at.in_time_zone('Tokyo'), format: :short %>
           </li>
           <li>
-            Updated at: <%= @article.updated_at%>
+            Updated: <%= l @article.updated_at.in_time_zone('Tokyo'), format: :short %>
           </li>
         </ul>
       </div>
