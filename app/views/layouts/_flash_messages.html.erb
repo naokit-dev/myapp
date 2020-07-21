@@ -1,7 +1,7 @@
 <% flash.each do |msg_type, msg| %>
 <% if msg_type=="init_article_guest" %>
 <script>
-  $(window).on('load', function () {
+  $(window).on('turbolinks:load', function () {
     $('#modal_initial').modal();
   });
 </script>
