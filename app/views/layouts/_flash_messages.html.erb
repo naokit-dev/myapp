@@ -1,5 +1,42 @@
 <% flash.each do |msg_type, msg| %>
-  <div class="alert alert-<%= bootstrap_alert(msg_type) %>" role="alert">
-    <%= msg %>
+<% if msg_type=="init_article_guest" %>
+<script>
+  $(window).on('load', function () {
+    $('#modal_initial').modal();
+  });
+</script>
+<div class="modal fade" id="modal_initial" tabindex="-1" role="dialog" aria-labelledby="modal_initialCenterTitle"
+  aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header alert alert-success">
+        <h5 class="modal-title text-success" id="modal_initialCenterTitle" %>Article was successfully created.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        記事固有URL
+        <div class="form-control with_copy">
+          <%= request.url %>
+          <button class="far fa-clipboard btn-copy" data-clipboard-text="<%= request.url %>"></button>
+        </div>
+        記事固有キー（記事の編集、削除に必要です）
+        <div class="form-control with_copy">
+          <%= msg %>
+          <button class="far fa-clipboard btn-copy" data-clipboard-text="<%= msg %>"></button>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Confirmed</button>
+      </div>
+    </div>
   </div>
+</div>
+<% else %>
+<div class="alert alert-<%= bootstrap_alert(msg_type) %>" role="alert">
+  <%= msg %>
+</div>
+<% end %>
 <% end %>

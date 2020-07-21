@@ -1,11 +1,11 @@
 @import "rouge";
 
 /* custom color */
-$midnight-green-eagle-green: #114b5fff;
-$illuminating-emerald: #1a936fff;
-$granny-smith-apple: #88d498ff;
-$tea-green: #c6dabfff;
-$champagne: #f3e9d2ff;
+// $midnight-green-eagle-green: #114b5fff;
+// $illuminating-emerald: #1a936fff;
+// $granny-smith-apple: #88d498ff;
+// $tea-green: #c6dabfff;
+// $champagne: #f3e9d2ff;
 
 $gainsboro: #dcdcddff;
 $silver: #c5c3c6ff;
@@ -103,6 +103,21 @@ pre {
 
 .modal-content {
   color: #46494cff;
+}
+
+div.with_copy {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+  background-color: whitesmoke;
+}
+
+button.btn-copy {
+  padding: 0;
+  border: unset;
+  background-color: unset;
+  color: unset;
 }
 
 /* header */
@@ -275,7 +290,7 @@ div.editor_parts {
 }
 
 .article-view.container-fluid {
-  min-height: 85vh;
+  min-height: 80vh;
   padding-top: 0px;
   padding-bottom: 0px;
 }

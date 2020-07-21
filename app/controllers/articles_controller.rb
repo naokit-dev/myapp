@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
     @article.create_guest_token
     if @article.save
       unless user_signed_in?
-        flash[:alert] = "記事固有パスワード: #{@article.guest_token} ***記事の編集や削除に必要です***"
+        flash[:init_article_guest] = @article.guest_token
       end
       flash[:notice] = 'Article was successfully created.'
       redirect_to @article
