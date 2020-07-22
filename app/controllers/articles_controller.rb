@@ -7,8 +7,6 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    # @article = Article.find_by(url_token: params[:url_token])
-    @writer = @article.user
   end
 
   def new
@@ -20,7 +18,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    
     unless @article.authenticate_guest_token(params[:guest_token])
       flash[:alert] = "Invalid password"
         redirect_to @article
@@ -29,15 +26,14 @@ class ArticlesController < ApplicationController
 
   def create
     if user_signed_in?
-      @article = current_user.articles.build(article_params)
+      author = current_user
     else
-      @article = User.mdguest.articles.build(article_params)
-      @article.guest_author = true
+      author = User.mdguest
     end
-    @article.create_guest_token
+    @article = author.articles.build(article_params)
     if @article.save
       unless user_signed_in?
-        flash[:init_article_guest] = @article.guest_token
+        flash[:init_article_guest] = article.guest_token
       end
       flash[:notice] = 'Article was successfully created.'
       redirect_to @article
@@ -75,10 +71,11 @@ class ArticlesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find_by(url_token: params[:url_token])
+      @author = @article.user
     end
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :content, :url_token, :guest_token, :guest_author)
+      params.require(:article).permit(:title, :content, :url_token, :guest_token)
     end
 end

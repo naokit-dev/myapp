@@ -5,10 +5,10 @@
         <h4>Article info</h4>
         <ul>
           <li>
-            <% if @article.guest_author? %>
+            <% if @author.is_guest_author? %>
             Author: <%= @article.user.username %></a>
             <% else %>
-            Author: <a href="<%= user_path(@writer) %>"><%= @article.user.username %></a>
+            Author: <a href="<%= user_path(@author) %>"><%= @article.user.username %></a>
             <% end %>
           </li>
           <li>
@@ -29,7 +29,7 @@
         <div class="article-header">
           <ul class="nav justify-content-end">
             <li class="nav-item">
-              <% if @article.guest_author? then %>
+              <% if @author.is_guest_author? then %>
               <%= link_to "編集", "#", class: "nav-link", "data-toggle": :"modal", "data-target": :"#edit-modal" %>
               <%= render 'modal_form', article: @article, id: "edit-modal" %>
               <% else %>
@@ -37,7 +37,7 @@
               <% end %>
             </li>
             <li class="nav-item">
-              <% if @article.guest_author? then %>
+              <% if @author.is_guest_author? then %>
               <%= link_to "削除", "#", class: "nav-link" , "data-toggle": :"modal", "data-target": :"#destroy-modal" %>
               <%= render 'modal_form', article: @article, id: "destroy-modal" %>
               <% else %>

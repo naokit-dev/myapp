@@ -22,4 +22,12 @@ class User < ApplicationRecord
       user.password = SecureRandom.hex(10)
     end
   end
+
+  def is_guest_author?
+    if self.username == "mdGuest"
+      return true
+    else
+      false
+    end
+  end
 end
