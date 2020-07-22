@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
   resources :users, only: :show
-  resources :articles, param: :url_token
+  resources :articles, only: [:index, :new, :create]
+  resources :articles, param: :url_token, path: '/', only: [:show, :edit, :update, :destroy]
 
 
   root 'static_pages#home'
