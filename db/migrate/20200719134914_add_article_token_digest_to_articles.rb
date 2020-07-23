@@ -1,4 +1,4 @@
-class AddGuestTokenDigestToArticles < ActiveRecord::Migration[6.0]
+class AddArticleTokenDigestToArticles < ActiveRecord::Migration[6.0]
   def change
     add_column :articles, :article_token_digest, :string
   end

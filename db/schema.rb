@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_07_19_134914) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.string "url_token"
-    t.boolean "guest_author"
     t.string "article_token_digest"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
