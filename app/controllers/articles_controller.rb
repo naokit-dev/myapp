@@ -32,10 +32,7 @@ class ArticlesController < ApplicationController
     end
     @article = author.articles.build(article_params)
     if @article.save
-      unless user_signed_in?
-        flash[:init_article_guest] = @article.article_token
-      end
-      flash[:notice] = 'Article was successfully created.'
+      flash[:init_article_guest] = @article.article_token
       redirect_to @article
     else
         render :new
