@@ -50,8 +50,8 @@
                 rel=noopner><i class="fab fa-twitter-square fa-2x"></i></a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link far fa-clipboard fa-2x btn-clipboard" id="copy-url"
-                data-clipboard-text="<%= "#{@article.title} #{request.url}" %>"></a>
+              <button class="far fa-clipboard fa-2x btn-copy" id="btn-copy"
+                data-clipboard-text="<%= "#{@article.title} #{request.url}" %>"></button>
             </li>
           </ul>
         </div>
@@ -64,7 +64,7 @@
   </div>
 </div>
 <script>
-  var clipboard = new ClipboardJS('.btn-clipbord');
+  var clipboard = new ClipboardJS('#btn-copy');
   clipboard.on('success', function (e) {
     console.log(e);
   });
@@ -73,7 +73,7 @@
   });
 </script>
 <script>
-  new ClipboardJS('.btn-copy', {
+  new ClipboardJS('#btn-copy-modal', {
     container: document.getElementById('modal_initial')
   });
 </script>

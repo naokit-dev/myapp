@@ -19,12 +19,14 @@
                 記事固有URL
                 <div class="form-control with_copy">
                     <%= request.url %>
-                    <button class="far fa-clipboard btn-copy" data-clipboard-text="<%= request.url %>"></button>
+                    <button class="far fa-clipboard btn-copy" id="btn-copy-modal"
+                        data-clipboard-text="<%= request.url %>"></button>
                 </div>
                 記事固有キー（記事の編集、削除に必要です）
                 <div class="form-control with_copy">
                     <%= msg %>
-                    <button class="far fa-clipboard btn-copy" data-clipboard-text="<%= msg %>"></button>
+                    <button class="far fa-clipboard btn-copy" id="btn-copy-modal"
+                        data-clipboard-text="<%= msg %>"></button>
                 </div>
             </div>
             <div class="modal-footer">
