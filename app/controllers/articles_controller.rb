@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
     end
     @article = author.articles.build(article_params)
     if @article.save
-      flash[:init_article_guest] = @article.article_token
+      flash[:need_to_confirm] = @article.article_token
       redirect_to @article
     else
         render :new
@@ -56,7 +56,6 @@ class ArticlesController < ApplicationController
   def destroy
     unless @article.authenticate_article_token(params[:article_token])
       flash[:alert] = "Invalid password"
-
       redirect_to @article
     else
       @article.destroy

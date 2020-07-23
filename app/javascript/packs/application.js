@@ -10,8 +10,6 @@ require("channels")
 require("@fortawesome/fontawesome-free")
 
 import 'bootstrap'
-import 'bootstrap/dist/js/bootstrap'
-import './bootstrap_custom.js'
 import '../stylesheets/application'
 
 
