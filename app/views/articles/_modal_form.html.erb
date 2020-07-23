@@ -18,7 +18,7 @@
             <% end %>
             <%= bootstrap_form_with(url: url, method: method, local: true) do |f| %>
             <div class="modal-body">
-                <%= f.password_field  :guest_token, hide_label: true, placeholder: "article password" %>
+                <%= f.password_field  :article_token, hide_label: true, placeholder: "article password" %>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

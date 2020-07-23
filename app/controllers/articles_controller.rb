@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    unless @article.authenticate_guest_token(params[:guest_token])
+    unless @article.authenticate_article_token(params[:article_token])
       flash[:alert] = "Invalid password"
         redirect_to @article
     end
@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
     @article = author.articles.build(article_params)
     if @article.save
       unless user_signed_in?
-        flash[:init_article_guest] = article.guest_token
+        flash[:init_article_guest] = @article.article_token
       end
       flash[:notice] = 'Article was successfully created.'
       redirect_to @article
@@ -57,7 +57,7 @@ class ArticlesController < ApplicationController
 
 
   def destroy
-    unless @article.authenticate_guest_token(params[:guest_token])
+    unless @article.authenticate_article_token(params[:article_token])
       flash[:alert] = "Invalid password"
 
       redirect_to @article
@@ -76,6 +76,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :content, :url_token, :guest_token)
+      params.require(:article).permit(:title, :content, :url_token, :article_token)
     end
 end
