@@ -23,6 +23,15 @@ import 'highlight.js/styles/github.css';
 //     alert("jQuery is ready.");
 // });
 
+document.addEventListener('turbolinks:load', function (event) {
+    if (typeof (gtag) == 'function') {
+        gtag('config', 'UA-173618609-1', {
+            'page_title': event.target.title,
+            'page_path': event.data.url.replace(window.location.protocol + "//" + window.location.hostname, "")
+        });
+    }
+})
+
 document.addEventListener("DOMContentLoaded", function () {
     var clipboard = new ClipboardJS('#btn-copy');
     clipboard.on('success', function (e) {

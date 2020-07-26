@@ -1,8 +1,8 @@
   <head>
-    <title><%= yield(:title) %> | mdClip! - keep your awaness</title>
+    <title><%= yield(:title) %> | mdClip - Fun with Code</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= render 'layouts/gtag' %>
     <!-- Vue.js -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.10/vue.js'></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
