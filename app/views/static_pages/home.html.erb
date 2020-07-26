@@ -3,10 +3,13 @@
 <div class="container-fluid cover">
     <div class="row cover">
         <div class="col-md-6 left">
+            <div class="catch-message">
+                <h1 class="display-3">Fun with Code</h1>
+                <h1 class="display-3">mdClip <i class="fas fa-paperclip"></i></h1>
+                <h3>伝えよう、もっとコードで。</h3>
+            </div>
             <div class="cover-message">
-                <h1 class="display-1">mdClip<i class="fas fa-exclamation"></i></h1>
-                <P>＜テスト運用中＞</P>
-                <p>mdClip!はオンラインMarkdownエディタです<br>美しくシンタックスハイライトされたコードを生成<br>ユーザー登録なしですぐに利用できます</p>
+                <p>mdClipはオンラインMarkdownエディタです<br>美しくシンタックスハイライトされたコードを生成<br>ユーザー登録なしですぐに利用できます</p>
                 <div class="btn-cover">
                     <%= link_to "Write now!", new_article_path, class: "btn btn-lg btn-primary btn-style-cover" %>
                     <%= link_to "Guest user", users_guest_sign_in_path, method: :post, class: "btn btn-lg btn-primary btn-style-cover" %>
@@ -25,7 +28,7 @@
                 <div class="cover-img" id="img2">
                     <div>
                         <h1>Share</h1>
-                        <p>コードを共有する、見てもらう</p>
+                        <p>共有する、届ける</p>
                     </div>
                     <%= image_tag asset_path('top2.svg', class: "img-fluid", id: "img2", alt: "share") %>
                 </div>

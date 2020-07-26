@@ -153,7 +153,7 @@ header a {
 /* footer */
 footer {
   background-color: #46494c;
-  height: 80px;
+  min-height: 10vh;
   padding-top: 5px;
 }
 
@@ -169,13 +169,16 @@ footer small {
 
 /* home */
 .cover.container-fluid {
-  height: 80vh;
+  min-height: 80vh;
+}
+
+.catch-message {
+  margin: 10%;
 }
 
 .cover-message {
   text-align: left;
-  margin-top: 15%;
-  margin-left: 15%;
+  margin-left: 10%;
 }
 
 .cover-message h1.display-1,
@@ -188,7 +191,7 @@ footer small {
 }
 
 .btn-cover {
-  margin: 10% 0;
+  margin: 6% 0;
   display: flex;
 }
 
