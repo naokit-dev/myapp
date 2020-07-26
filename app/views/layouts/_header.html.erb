@@ -16,9 +16,8 @@
         <% if user_signed_in? %>
         <li class="nav-item"><%= link_to user_path(current_user), class: "nav-link"  do %>
           <i class="far fa-id-card"></i> My page
-          <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
-          <% end %>
         </li>
+        <% end %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
@@ -27,6 +26,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item"%>
             <div class="dropdown-divider"></div>
+            <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
           </div>
         </li>
         <%# <% else %>

@@ -1,9 +1,4 @@
 <% flash.each do |msg_type, msg| %>
-<script>
-    $(window).on('load', function () {
-        $('#modal_initial').modal();
-    });
-</script>
 <div class="modal fade" id="modal_initial" tabindex="-1" role="dialog" aria-labelledby="modal_initialCenterTitle"
     aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -19,13 +14,13 @@
                 記事固有URL
                 <div class="form-control with_copy">
                     <%= request.url %>
-                    <button class="far fa-clipboard btn-copy" id="btn-copy-modal"
+                    <button type="button" class="far fa-clipboard btn-copy" id="btn-copy-modal"
                         data-clipboard-text="<%= request.url %>"></button>
                 </div>
                 記事固有キー（記事の編集、削除に必要です）
                 <div class="form-control with_copy">
                     <%= msg %>
-                    <button class="far fa-clipboard btn-copy" id="btn-copy-modal"
+                    <button type="button" class="far fa-clipboard btn-copy" id="btn-copy-modal"
                         data-clipboard-text="<%= msg %>"></button>
                 </div>
             </div>

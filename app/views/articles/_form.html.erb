@@ -39,17 +39,9 @@
   </div>
 </div>
 
-<script type="text/javascript">
+<script>
   window.addEventListener('turbolinks:load',
     function () {
-      created: function () {
-        marked.setOptions({
-          langPrefix: '',
-          highlight: function (code, lang) {
-            return hljs.highlightAuto(code, [lang]).value
-          }
-        });
-      },
       new Vue({
         el: '#editor',
         data: {
