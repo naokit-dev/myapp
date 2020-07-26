@@ -12,9 +12,12 @@ require("@fortawesome/fontawesome-free");
 // import "bootstrap";
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application";
+import "styles"
 import ClipboardJS from "clipboard";
 import marked from 'marked';
 import hljs from 'highlight.js';
+import 'highlight.js/styles/github.css';
+
 
 // $(function () {
 //     // if document is ready
@@ -35,14 +38,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 }, false)
 
-document.addEventListener("DOMContentLoaded", function () {
-    marked.setOptions({
-        langPrefix: '',
-        highlight: function (code, lang) {
-            return hljs.highlightAuto(code, [lang]).value
+marked.setOptions({
+    highlight: function (code, lang, _callback) {
+        if (hljs.getLanguage(lang)) {
+            return hljs.highlight(lang, code).value
+        } else {
+            return hljs.highlightAuto(code).value
         }
-    });
+    },
 })
+window.marked = marked
+
 
 document.addEventListener("turbolinks:load", function () {
     $(window).on('load', function () {

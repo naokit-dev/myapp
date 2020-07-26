@@ -28,8 +28,8 @@ section {
 }
 
 .style-important {
-  background-color: #46494cff;
-  opacity: 0.6;
+  background-color: rgba(70, 73, 76, 0.6);
+  opacity: 0.8;
 }
 
 a {
@@ -99,6 +99,8 @@ div.alert {
 
 pre {
   padding: 14px;
+  background-color: #46494cff;
+  color: #dcdcdc;
 }
 
 .modal-content {
@@ -255,7 +257,6 @@ footer small {
 
 .editor-header {
   @extend .style-important;
-  opacity: unset;
   height: 15vh;
   width: 100%;
   padding: 1vh 15px;
