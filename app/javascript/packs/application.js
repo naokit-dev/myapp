@@ -16,10 +16,10 @@ import ClipboardJS from "clipboard";
 import marked from 'marked';
 import hljs from 'highlight.js';
 
-$(function () {
-    // if document is ready
-    alert("jQuery is ready.");
-});
+// $(function () {
+//     // if document is ready
+//     alert("jQuery is ready.");
+// });
 
 document.addEventListener("DOMContentLoaded", function () {
     var clipboard = new ClipboardJS('#btn-copy');
