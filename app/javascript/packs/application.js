@@ -9,8 +9,8 @@ require("@rails/activestorage").start();
 require("channels");
 require("@fortawesome/fontawesome-free");
 
-import "bootstrap";
-import '@fortawesome/fontawesome-free/js/all'
+// import "bootstrap";
+import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application";
 import ClipboardJS from "clipboard";
 import marked from 'marked';
