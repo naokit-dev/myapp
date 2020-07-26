@@ -12,7 +12,6 @@ require("@fortawesome/fontawesome-free");
 // import "bootstrap";
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application";
-import "styles"
 import ClipboardJS from "clipboard";
 import marked from 'marked';
 import hljs from 'highlight.js';
