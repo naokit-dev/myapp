@@ -21,19 +21,20 @@ describe User do
         it { is_expected.to be_invalid }
       end
       context "usernameが重複している場合" do
-        existed_user =  User.find_by(username: "existed_user") || FactoryBot.create(:existed_user)
-        let(:username) { existed_user.username }
+        let!(:existing_user) { FactoryBot.create(:user, username: "alice") } #変更
+        subject { FactoryBot.build(:user, username: "alice" ) }
+        it { is_expected.to be_invalid }
       end
     end
     describe "email" do
-      subject(:user) { FactoryBot.build(:user, email: email) }
       context "emailが存在しない場合" do
+        subject(:user) { FactoryBot.build(:user, email: email) }
         let(:email) { "" }
         it { is_expected.to be_invalid }
       end
-      context "emailが重複してする場合" do
-        existed_user =  User.find_by(username: "existed_user") || FactoryBot.create(:existed_user)
-        let(:email) { existed_user.email }
+      context "emailが重複する場合" do
+        let!(:existing_user) { FactoryBot.create(:user, email: 'alice@example.com') }
+        subject { FactoryBot.build(:user, email: 'alice@example.com') }
         it { is_expected.to be_invalid }
       end
     end
