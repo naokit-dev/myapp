@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 }, false)
 
 marked.setOptions({
+    breaks: true,
     highlight: function (code, lang, _callback) {
         if (hljs.getLanguage(lang)) {
             return hljs.highlight(lang, code).value
