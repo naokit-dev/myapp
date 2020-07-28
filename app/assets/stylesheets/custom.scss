@@ -99,17 +99,49 @@ pre {
   color: #dcdcdc;
 }
 
-pre p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul {
-  margin-top: 2em;
-  margin-bottom: 1em;
+
+.article-style {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  h5,
+  h6,
+  p {
+    font-size: 1rem;
+  }
+
+  p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  ul {
+    list-style: disc;
+  }
 }
 
 code {
