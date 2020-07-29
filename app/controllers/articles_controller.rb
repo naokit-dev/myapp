@@ -18,10 +18,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    unless @article.authenticate_article_token(params[:article_token])
-      flash[:alert] = "Invalid password"
-        redirect_to @article
-    end
+    # unless @article.authenticate_article_token(params[:article_token])
+    #   flash[:alert] = "Invalid password"
+    #     redirect_to @article
+    # end
   end
 
   def create
@@ -54,19 +54,19 @@ class ArticlesController < ApplicationController
 
 
   def destroy
-    unless @article.authenticate_article_token(params[:article_token])
-      flash[:alert] = "Invalid password"
-      redirect_to @article
-    else
-      @article.destroy
-      redirect_to root_path, notice: 'Article was successfully destroyed.' 
-    end
+    # unless @article.authenticate_article_token(params[:article_token])
+    #   flash[:alert] = "Invalid password"
+    #   redirect_to @article
+    # else
+    # end
+    @article.destroy
+    redirect_to root_path, notice: 'Article was successfully destroyed.' 
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find_by(url_token: params[:url_token])
+      @article = Article.find_by!(url_token: params[:url_token])
       @author = @article.user
     end
 
