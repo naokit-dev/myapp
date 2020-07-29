@@ -1,42 +1,26 @@
-<% if article.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
-
-  <ul>
-    <% article.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-<div class="editor container-fluid">
-  <%= bootstrap_form_with(model: @article, local: true) do |f| %>
-  <div class="row" id="editor">
-    <div class="col-md-4 editor-header">
-      <h1><%= yield(:form_title) %></h1>
-      <%= f.submit yield(:btn_name), class: 'btn btn-primary btn-block' %>
-    </div>
-    <div class="col-md-8 editor-header">
-      <%= f.text_area :title, label_as_placeholder: true,
+<div class="editor container-fluid" id="editor">
+  <%= bootstrap_form_with(model: @article, inline_errors: true, local: true) do |f| %>
+  <div class="row editor-body">
+    <div class="col-12 title-area">
+      <%= f.text_area :title, hide_label: true, placeholder: 'Title (最大100文字）',
                             autofocus: true,
-                            class: 'article-title',
-                            id: 'article_title' %>
+                            class: 'textarea-title', tabindex: '1' %>
     </div>
-
-    <div class="col-md-6">
-      <%= f.text_area :content, class: 'editor_parts', id: 'article_content',
-                          placeholder: 'markdown',
+    <div class="col-md-6 input-area">
+      <%= f.text_area :content, class: 'textarea-content', tabindex: '2',
+                          placeholder: 'markdown', 
                           "v-model" => "input" %>
     </div>
-
-    <div class="col-md-6 d-none d-md-block">
+    <div class="col-md-6 d-none d-md-block preview-area">
       <label>Preview</label>
-      <div v-html='input | marked' class="editor_parts article-style overflow-auto" id="preview_area">
+      <div v-html='input | marked' class="textarea-perview article-style overflow-auto" id="preview_area">
       </div>
     </div>
-
-    <% end %>
   </div>
+  <div class="editor-footer">
+    <%= f.submit yield(:btn_name), class: 'btn btn-primary btn-submit-editor', tabindex: '3' %>
+  </div>
+  <% end %>
 </div>
 
 <script>

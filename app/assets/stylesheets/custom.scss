@@ -11,7 +11,11 @@ $davys-grey: #46494cff;
 $black-coral: #4c5c68ff;
 $blue-munsell: #1985a1ff;
 
-/* universal */
+/* global */
+$header-height: 60px;
+$footer-height: 10vh;
+
+
 
 body {
   background-color: #4c5c68ff;
@@ -39,9 +43,7 @@ a:hover {
   color: white;
 }
 
-// textarea {
-//   resize: vertical;
-// }
+
 
 /* typography */
 
@@ -171,13 +173,18 @@ button.btn-copy {
 
 /* header */
 header {
-  height: 10vh;
+
+  height: $header-height;
   background-color: #1985a1ff;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
 }
 
-header a {
-  color: white;
-  text-decoration: none;
+.nav-header {
+  padding: 0 30px;
 }
 
 #logo {
@@ -189,30 +196,29 @@ header a {
   font-weight: bold;
 }
 
-.fa-exclamation {
-  vertical-align: text-top;
-}
-
-#logo:hover {
-  text-decoration: none;
+/* body */
+.contents {
+  min-height: calc(100vh - #{$header-height} - #{$footer-height});
 }
 
 /* footer */
 footer {
   background-color: #46494c;
-  min-height: 10vh;
+  min-height: $footer-height;
   padding-top: 5px;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+
+  small {
+    display: block;
+    text-align: center;
+  }
 }
 
-footer a {
-  color: white;
-  text-decoration: none;
-}
-
-footer small {
-  display: block;
-  text-align: center;
-}
 
 /* home */
 .cover.container-fluid {
@@ -294,44 +300,69 @@ footer small {
 
 /* editor form */
 .editor {
+  $editor-footer-height: 34px;
   text-align: left;
-}
+  height: calc(100vh - #{$header-height});
 
-.editor.container-fluid {
-  min-height: 90vh;
-}
+  .editor-footer {
+    height: $editor-footer-height;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
 
-.editor .form-control {
-  background-color: #dcdcddff;
-}
+  .form-group {
+    height: 100%;
+    margin-bottom: 0;
 
-.editor-header {
-  @extend .style-important;
-  height: 15vh;
-  width: 100%;
-  padding: 1vh 15px;
-}
+    .invalid-feedback {
+      text-align: right;
+    }
+  }
 
-.editor-header h1 {
-  margin-bottom: 0.2em;
-  text-align: left;
-}
+  .editor-body {
+    height: calc(100vh - #{$header-height} - #{$editor-footer-height});
 
-.editor-header btn {
-  width: 60%;
-}
+    .title-area {
+      height: 6em;
 
-textarea.article-title {
-  margin: 0;
-  height: 13vh;
-}
+      .textarea-title {
+        height: 5em;
+        margin: 0.5em 0;
 
-textarea.editor_parts {
-  height: 70vh;
-}
+      }
+    }
 
-div.editor_parts {
-  height: 70vh;
+    .input-area,
+    .preview-area {
+      height: calc(100% - 6em);
+
+      label {
+        height: 2em;
+        margin: 0;
+        padding-left: 10px;
+      }
+
+      .textarea-content,
+      .textarea-perview {
+        height: calc(100% - 2em)
+      }
+    }
+
+
+    textarea {
+      @extend .style-important;
+      resize: none;
+      color: whitesmoke;
+    }
+  }
+
+  .btn-submit-editor {
+    font-size: 1em;
+    width: 120px;
+    padding: 2px 20px;
+    margin-right: 30px
+  }
 }
 
 
@@ -341,7 +372,7 @@ div.editor_parts {
 }
 
 .article-view.container-fluid {
-  min-height: 80vh;
+  min-height: calc(100vh - #{$header-height});
   padding-top: 0px;
   padding-bottom: 0px;
 }
@@ -361,9 +392,3 @@ div.editor_parts {
 .outline {
   padding: 20px 15px;
 }
-
-
-
-// h4.article-view {
-//   text-align: center;
-// }
