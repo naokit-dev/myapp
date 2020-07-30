@@ -41,7 +41,7 @@
               <%= link_to "削除", "#", class: "nav-link" , "data-toggle": :"modal", "data-target": :"#destroy-modal" %>
               <%= render 'modal_form', article: @article, id: "destroy-modal" %>
               <% else %>
-              <%= link_to "削除", article_path(@article), method: :delete,  class: "nav-link" %>
+              <%= link_to "削除", article_path(@article), method: :delete,  class: "nav-link", data: {confirm: 'Are you sure?'} %>
               <% end %>
             </li>
             <li class="nav-item">

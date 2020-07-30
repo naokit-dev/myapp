@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :article_authentication, only:[:edit, :destroy]
 
   def index
     redirect_to root_path
@@ -18,10 +19,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    # unless @article.authenticate_article_token(params[:article_token])
-    #   flash[:alert] = "Invalid password"
-    #     redirect_to @article
-    # end
   end
 
   def create
@@ -54,11 +51,6 @@ class ArticlesController < ApplicationController
 
 
   def destroy
-    # unless @article.authenticate_article_token(params[:article_token])
-    #   flash[:alert] = "Invalid password"
-    #   redirect_to @article
-    # else
-    # end
     @article.destroy
     redirect_to root_path, notice: 'Article was successfully destroyed.' 
   end
@@ -74,4 +66,19 @@ class ArticlesController < ApplicationController
     def article_params
       params.require(:article).permit(:title, :content, :url_token, :article_token)
     end
+
+    def article_authentication
+      if user_signed_in?
+        unless current_user == @author
+          redirect_to @article
+          flash[:alert] = "Invalid password or Permission denied"
+        end
+      else
+        unless @article.authenticate_article_token(params[:article_token])
+          redirect_to @article
+          flash[:alert] = "Invalid password or Permission denied"
+        end
+      end
+    end
+
 end
