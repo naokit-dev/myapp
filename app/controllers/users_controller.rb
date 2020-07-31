@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
     @user = User.find(params[:id])
-    @articles = @user.articles.page(params[:page]).per(5).order('updated_at DESC')
+    @articles = @user.articles.page(params[:page]).per(10).order('updated_at DESC')
   end
 
   private

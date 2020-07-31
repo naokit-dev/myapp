@@ -91,8 +91,20 @@ div.alert {
   text-decoration: none;
 }
 
-.card-body {
-  color: #46494cff;
+.card {
+  @extend .style-important;
+  margin-bottom: 10px;
+  padding: 10px 30px;
+  text-decoration: none;
+
+
+  .card-body {
+    p {
+      text-align: right;
+      font-size: 0.8em;
+      margin-bottom: 0px;
+    }
+  }
 }
 
 pre {

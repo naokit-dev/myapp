@@ -1,5 +1,6 @@
 <a href="<%= article_path(article) %>" class="card">
   <div class="card-body">
-    <p class="card-text"><%= article.title %></p>
+    <h4 class="card-text"><%= article.title %></h4>
+    <p>Accepted: <%= l article.created_at.in_time_zone('Tokyo'), format: :short %></p>
   </div>
 </a>
