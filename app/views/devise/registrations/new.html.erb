@@ -1,6 +1,7 @@
-<h1><%= t('.sign_up') %></h1>
+<div class="container devise-form">
+  <h1><%= t('.sign_up') %></h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= bootstrap_devise_error_messages! %>
 
   <div class="form-group">
@@ -18,7 +19,8 @@
     <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control' %>
 
     <% if @minimum_password_length %>
-      <small class="form-text text-muted"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></small>
+    <small
+      class="form-text text-muted"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></small>
     <% end %>
   </div>
 
@@ -30,6 +32,8 @@
   <div class="form-group">
     <%= f.submit t('.sign_up'), class: 'btn btn-primary' %>
   </div>
-<% end %>
+  <% end %>
 
-<%= render 'devise/shared/links' %>
+  <%= render 'devise/shared/links' %>
+
+</div>

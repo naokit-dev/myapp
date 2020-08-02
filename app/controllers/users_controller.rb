@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
  
-  # GET /users/1
   def show
     @user = User.find(params[:id])
     @articles = @user.articles.page(params[:page]).per(10).order('updated_at DESC')

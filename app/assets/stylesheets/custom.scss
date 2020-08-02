@@ -298,8 +298,8 @@ footer {
 
 /* Devise */
 .devise-form {
-  @extend .container-fluid;
-  max-width: 60vw;
+  max-width: 500px;
+  margin: 20px auto;
 }
 
 /* user-page */
