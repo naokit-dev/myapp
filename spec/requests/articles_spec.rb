@@ -82,7 +82,38 @@ RSpec.describe "Articles", type: :request do
   
   describe "GET #edit article" do
     let!(:user) { FactoryBot.create(:user, username: "alice") }
+    let!(:invalid_user) { FactoryBot.create(:user, username: "Jhon")}
     let!(:article) { user.articles.create(FactoryBot.attributes_for(:article, title: "test_title", content: "Hello Naoki")) }
+    context "妥当なuserでログインしている場合" do
+      before do
+        sign_in(user)
+      end
+      it "リクエストが成功すること" do
+        get edit_article_path(article), params: { article_token: "" }
+        expect(response).to have_http_status(200)
+      end
+      it "タイトルが表示されること" do
+        get edit_article_path(article), params: { article_token: "" }
+        expect(response.body).to include "test_title"
+      end
+      it "本文が表示されること" do
+        get edit_article_path(article), params: { article_token: "" }
+        expect(response.body).to include "Hello Naoki"
+      end
+    end
+    context "不正なuserでログインしている場合" do
+      before do
+        sign_in(invalid_user)
+      end
+      it "リクエストが成功すること" do
+        get edit_article_path(article), params: { article_token: "" }
+        expect(response).to have_http_status(302)
+      end
+      it "リダイレクトされること" do
+        get edit_article_path(article), params: { article_token: "" }
+        expect(response).to redirect_to article_path(article)
+      end
+    end
     context "article_tokenが正しい場合" do
       it "リクエストが成功すること" do
         get edit_article_path(article), params: { article_token: article.article_token }
@@ -108,7 +139,7 @@ RSpec.describe "Articles", type: :request do
       end
     end
   end
-  
+
   describe "PUT #update" do
     let!(:user) { FactoryBot.create(:user) }
     let!(:article) { user.articles.create(FactoryBot.attributes_for(:article, title: "title", content: "content"))}
@@ -178,8 +209,45 @@ RSpec.describe "Articles", type: :request do
   end
 
   describe "DELETE #destroy" do
-    let!(:user) { FactoryBot.create(:user) }
+    let!(:user) { FactoryBot.create(:user, username: "Alice") }
+    let!(:invalid_user) { FactoryBot.create(:user, username: "Jhon")}
     let!(:article) { user.articles.create(FactoryBot.attributes_for(:article))}
+    context "妥当なユーザーでログインしている場合" do
+      before do
+        sign_in(user)
+      end
+      it "リクエストが成功すること" do
+        delete article_path(article), params: { article_token: "" }
+        expect(response).to have_http_status(302)
+      end
+      it "記事が削除されること" do
+        expect do
+          delete article_path(article), params: { article_token: "" }
+        end.to change(Article, :count).by(-1)
+      end
+      it "リダイレクトすること" do
+        delete article_path(article), params: { article_token: "" }
+        expect(response).to redirect_to root_path
+      end
+    end
+    context "不正なユーザーでログインしている場合" do
+      before do
+        sign_in(invalid_user)
+      end
+      it "リクエストが成功すること" do
+        delete article_path(article), params: { article_token: "" }
+        expect(response).to have_http_status(302)
+      end
+      it "記事が削除されないこと" do
+        expect do
+          delete article_path(article), params: { article_token: "" }
+        end.to_not change(Article, :count)
+      end
+      it "リダイレクトすること" do
+        delete article_path(article), params: { article_token: "" }
+        expect(response).to redirect_to article_path(article)
+      end
+    end
     context "article_tokenが正しい場合" do 
       it "リクエストが成功すること" do
         delete article_path(article), params: { article_token: article.article_token }
