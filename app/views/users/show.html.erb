@@ -2,12 +2,13 @@
     <div class="row">
         <div class="col-md-12">
             <nav class="navbar">
-                <h4><i class="fas fa-history"></i> Most recent articles</h4>
-                <ul class="nav justify-content-end">
-                    <li class="navitem">
-                    </li>
-                </ul>
+                <h2><%= "#{@user.username}'s articles" %></h2>
+                <%= form_tag user_path(@user), :method => 'get', class: "form-inline" do %>
+                <%= text_field_tag :search, params[:search], class: "form-control"%>
+                <%= submit_tag "Search", :name => nil, class: "btn btn-primary"%>
+                <% end %>
             </nav>
+            <h4><i class="fas fa-history"></i> Most recent articles</h4>
             <%= render @articles, article: @article %>
             <%= paginate @articles %>
         </div>

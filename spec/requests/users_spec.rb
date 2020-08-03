@@ -7,14 +7,14 @@ RSpec.describe "Users", type: :request do
       expect(response).to have_http_status(200)
     end
   end
-  
+
   describe "GET #new user" do
     it "リクエストが成功すること" do
       get new_user_registration_path
       expect(response).to have_http_status(200)
     end
   end
-  
+
   describe "GET #edit user" do
     let!(:user) { FactoryBot.create(:user) }
     it "レスポンスが成功すること" do

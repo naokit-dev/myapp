@@ -300,16 +300,33 @@ footer {
 .devise-form {
   max-width: 500px;
   margin: 20px auto;
+
+  .text-muted {
+    color: whitesmoke !important;
+  }
 }
 
 /* user-page */
-.container.user-page {
+.user-page {
   min-height: 90vh;
+
+  .navbar {
+    margin: 20px 0;
+
+    h2 {
+      margin-bottom: 0px;
+    }
+
+    input#search {
+      margin-right: 10px;
+    }
+  }
+
+  .pagination {
+    justify-content: end;
+  }
 }
 
-.pagination {
-  justify-content: end;
-}
 
 /* editor form */
 .editor {
