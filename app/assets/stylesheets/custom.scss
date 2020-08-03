@@ -315,6 +315,7 @@ footer {
 .user-page {
   min-height: 90vh;
 
+
   .navbar {
     margin: 20px 0;
     padding: 0.5em 0;
@@ -326,6 +327,10 @@ footer {
     input#search {
       margin-right: 10px;
     }
+  }
+
+  .articles-header {
+    margin-left: 2em;
   }
 
   .pagination {
