@@ -14,7 +14,7 @@ import "../stylesheets/application";
 import ClipboardJS from "clipboard";
 import marked from 'marked';
 import hljs from 'highlight.js';
-// import 'highlight.js/styles/github.css';
+import 'highlight.js/styles/railscasts.css';
 
 
 

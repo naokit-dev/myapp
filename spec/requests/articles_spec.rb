@@ -7,6 +7,14 @@ RSpec.describe "Articles", type: :request do
       get new_article_path
       expect(response).to have_http_status(200)
     end
+    it "titleの初期値が表示されること" do
+      get new_article_path
+      expect(response.body).to include "No title"
+    end
+    it "contentの初期値が表示されていること" do
+      get new_article_path
+      expect(response.body).to include "What&#39;s mdClip??"
+    end
   end
 
   describe "GET #show article" do
