@@ -1,10 +1,12 @@
 # mdClip - Fun with code - (個人開発アプリ)
 
 https://www.mdclip.xyz/
+https://github.com/naokit-dev/myapp
 
 ## アプリ要件
 
 ### アーキテクチャ
+
 ![myVPC copy](https://user-images.githubusercontent.com/65161895/93186408-90c2a400-f779-11ea-9b57-07656b469d19.png)
 
 ### 機能要件:
