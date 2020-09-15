@@ -1,24 +1,38 @@
-# README
+# mdClip - Fun with code - (個人開発アプリ)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+https://www.mdclip.xyz/
 
-Things you may want to cover:
+## アプリ要件
 
-* Ruby version
+### アーキテクチャ
 
-* System dependencies
+### 機能要件:
 
-* Configuration
+リアルタイムプレビューが可能な markdown エディタ / 多言語対応のシンタックスハイライト / ログイン不要で記事の作成が可能 / 生成した記事は固有の URL を割り当て共有可能 / シェアボタンで Twitter に URL を投稿 / URL 削除用の記事固有パスワードを自動生成
 
-* Database creation
+### 非機能要件:
 
-* Database initialization
+SSL 対応 / CI/CD (GitHub > CircleCI > Capistrano > AWS EC2) を導入し、自動テストおよび開発段階からデプロイ環境での動作検証が可能であること
 
-* How to run the test suite
+本番環境: AWS [ EC2(Amazon Linux2), RDS(PostgreSQL) ], NGINX
 
-* Services (job queues, cache servers, search engines, etc.)
+開発環境: Docker, CircleCI, Ruby 2.7.1, Rails 6.0.3, PostgreSQL 11.6
 
-* Deployment instructions
+## なぜ作ったか
 
-* ...
+プログラミング初学者が、Twitter 上でスクリーンショットを使ってコードを共有しているのを見て考案。見る側、見せる側にとって、もっと効果的な方法を検討した結果、共有用 URL を生成可能なオンライン markdown エディタの制作に至りました。
+一旦実装したユーザー登録機能を、利用のために必須ではなくすることで、とにかく早く、手軽に使ってもらうことに拘りました。
+
+## 何をしたか
+
+まったく無知な状態でしたが、インフラの構築 (AWS)、CI/CD 環境(CircleCI)の構築から取り組みました。
+また開発環境には Docker を取り入れ、より実際の開発現場に近い環境に近づけるよう意識しました。
+これらは、アプリ制作にかかった時間と同等か、それ以上に時間を要する作業でしたが、
+web 開発の全体像把握に大いに役立ちました。
+
+## 何を得たか
+
+とても、たくさんの人に使ってもらえるような状況ではありませんが
+プログラミンを学ぶ仲間に、これで”markdown 表記の練習をする！”と言ってもらえたことがとても嬉しかったです。
+また、web アプリの制作を歴て、開発に必要な知識、技術についての視野が広がり
+ネットワークの基礎、クラウドベースのインフラについて関心を深めるきっかけになりました。
