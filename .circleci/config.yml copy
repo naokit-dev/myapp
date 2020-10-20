@@ -1,0 +1,104 @@
+version: 2.1
+
+executors:
+  default:
+    working_directory: ~/myapp
+    docker:
+      - image: circleci/ruby:2.7.1-node-browsers
+        environment:
+          BUNDLER_VERSION: 2.1.4 # <= これ必須！！
+          BUNDLE_JOBS: 4
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
+          PGPASSWORD: ""
+      - image: circleci/postgres:11.6-alpine-ram
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: myapp_test
+          POSTGRES_PASSWORD: ""
+
+commands:
+  setup:
+    steps:
+      - checkout
+      - run:
+          name: Update bundler # bundlerのバージョン２へのアップデート
+          command: gem update bundler
+
+      - run:
+          name: Which bundler? # バージョン確認
+          command: bundle -v
+
+      - restore_cache: # キャッシュを読み込む
+          keys:
+            - gem-cache-v1-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-
+
+      - run:
+          name: Bundle Install
+          command: bundle check --path vendor/bundle || bundle install --deployment
+
+      - save_cache: # キャッシュを保存する
+          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # Webpackerを使う場合は必須
+      - restore_cache:
+          keys:
+            - yarn-cache-v1-{{ checksum "yarn.lock" }}
+            - yarn-cache-v1-
+
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      - save_cache:
+          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+jobs:
+  test:
+    executor: default
+    environment:
+      RAILS_ENV: test
+    steps:
+      - checkout
+      - setup
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bin/rails db:schema:load --trace
+
+      - run: # 普通のテストとシステムテストを実行する
+          name: Rails Test
+          command: bundle exec rspec
+
+  deploy:
+    executor: default
+    steps:
+      - checkout
+      - setup
+      - add_ssh_keys:
+          fingerprints:
+            - "21fede927a9662bd29b93899aae2ae6f"
+      - deploy:
+          name: Deploy with Capistrano
+          command: bundle exec cap production deploy
+
+workflows:
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
