@@ -1,28 +1,28 @@
-version: '3'
+version: "3"
 
 services:
   db:
     image: postgres:11.0-alpine
     volumes:
       - postgres:/var/lib/postgresql/data:cached
-    environment:
-      - TZ=Asia/Tokyo
     ports:
-      - '5432:5432'
+      - "5432:5432"
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --locale=ja_JP.UTF-8'
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --locale=ja_JP.UTF-8"
       TZ: Asia/Tokyo
-  app: &app_base
+  app:
     build:
       context: .
     command: ash -c "rm -f tmp/pids/server.pid && ./bin/rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/myapp:cached
-      - rails_cache:/myapp/tmp/cache
       - bundle:/bundle:cached
+      - node_modules:/myapp/node_modules:cached
+      - rails_cache:/myapp/tmp/cache:cached
+      - yarn_cache:/usr/local/share/.cache/yarn/v6:cached
     tmpfs:
       - /tmp
     tty: true
@@ -40,14 +40,13 @@ services:
     depends_on:
       - db
       - webpacker
-    links:
-      - db
-      - webpacker
+
   webpacker:
     build: .
     command: ./bin/webpack-dev-server
     volumes:
       - .:/myapp:cached
+      - node_modules:/myapp/node_modules:cached
     environment:
       RAILS_ENV: development
       NODE_ENV: development
@@ -55,11 +54,11 @@ services:
     tty: false
     stdin_open: false
     ports:
-      - '3035:3035'
+      - "3035:3035"
 
 volumes:
-  rails_cache:
   postgres:
   bundle:
   node_modules:
-  packs:
+  rails_cache:
+  yarn_cache:
