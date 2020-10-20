@@ -1,0 +1,32 @@
+header.sticky-top
+  nav.navbar.navbar-expand-lg.nav-header
+    = link_to root_path, class: "navbar-brand", id: "logo"  do
+      |  mdClip 
+      i.fas.fa-paperclip
+    button.navbar-toggler[type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse.justify-content-end
+      ul.nav.navbar-nav.justify-content-end
+        li.nav-item
+          = link_to new_article_path, class: "nav-link" do
+            i.far.fa-edit
+            |  Write now! 
+        - if user_signed_in?
+          li.nav-item
+            = link_to user_path(current_user), class: "nav-link"  do
+              i.far.fa-id-card
+              |  My page 
+        li.nav-item.dropdown
+          a#navbarDropdown.nav-link.dropdown-toggle[href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+            strong
+              = current_user.username
+            i.fas.fa-user-circle
+          .dropdown-menu[aria-labelledby="navbarDropdown"]
+            = link_to "Edit profile", edit_user_registration_path, class: "dropdown-item"
+            .dropdown-divider
+            = link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete
+        - else
+          li.nav-item
+            = link_to "Sign up", new_user_registration_path, class: "nav-link"
+          li.nav-item
+            = link_to "Login", new_user_session_path, class: "nav-link"

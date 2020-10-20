@@ -1,0 +1,60 @@
+- provide(:title, @article.title)
+.article-view.container-fluid
+  .row
+    .col-3.d-none.d-lg-block.style-important.content
+      .article-info
+        h4
+          | Article info
+        ul
+          li
+            - if @author.is_guest_author?
+              |  Author: 
+              = @article.user.username
+            - else
+              |  Author: <a href="
+              = user_path(@author)
+              | ">
+              = @article.user.username
+          li
+            |  Accepted: 
+            = l @article.created_at.in_time_zone('Tokyo'), format: :short
+          li
+            |  Updated: 
+            = l @article.updated_at.in_time_zone('Tokyo'), format: :short
+      .outline
+        h4
+          | Outline
+        = toc(@article.content)
+    .col-lg-9.content
+      .article-main
+        .article-header
+          ul.nav.justify-content-end
+            li.nav-item
+              - if @author.is_guest_author? then
+                = link_to "編集", "#", class: "nav-link", "data-toggle": :"modal", "data-target": :"#edit-modal"
+                = render 'modal_form', article: @article, id: "edit-modal"
+              - else
+                = link_to "編集", edit_article_path(@article), class: "nav-link"
+            li.nav-item
+              - if @author.is_guest_author? then
+                = link_to "削除", "#", class: "nav-link" , "data-toggle": :"modal", "data-target": :"#destroy-modal"
+                = render 'modal_form', article: @article, id: "destroy-modal"
+              - else
+                = link_to "削除", article_path(@article), method: :delete,  class: "nav-link", data: {confirm: 'Are you sure?'}
+            li.nav-item
+              |  <a class="nav-link" href="
+              = TweetUriEncord(text: @article.title, url: request.url, hashtags: "mdClip")
+              | " target=_blank rel=noopner>
+              i.fab.fa-twitter-square.fa-2x
+            li.nav-item
+              .nav-link
+                |  <button type="button" class="far fa-clipboard fa-2x" id="btn-copy" data-clipboard-text="
+                = "#{@article.title} #{request.url}"
+                | ">
+        .article-title
+          h1
+            = @article.title
+        #article-content.article-style
+
+script
+  |  document.getElementById('article-content').innerHTML = marked('<ruby code="== j@article.content"></ruby>'); 

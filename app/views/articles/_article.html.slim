@@ -1,0 +1,9 @@
+| <a href="
+= article_path(article)
+| " class="card"> 
+.card-body
+  h4.card-text
+    = article.title
+  p
+    | Accepted: 
+    = l article.created_at.in_time_zone('Tokyo'), format: :short

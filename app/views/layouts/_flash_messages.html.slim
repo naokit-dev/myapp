@@ -1,0 +1,8 @@
+- flash.each do |msg_type, msg|
+  - if msg_type=="need_to_confirm"
+    = render 'layouts/modal-confirm'
+  - else
+    |  <div class="alert alert-
+    = bootstrap_alert(msg_type)
+    | " role="alert"> 
+    = msg

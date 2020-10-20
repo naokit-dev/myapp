@@ -1,0 +1,25 @@
+- flash.each do |msg_type, msg|
+  #modal_initial.modal.fade[tabindex="-1" role="dialog" aria-labelledby="modal_initialCenterTitle" aria-hidden="true" data-backdrop="static"]
+    .modal-dialog.modal-dialog-centered[role="document"]
+      .modal-content
+        .modal-header
+          |  <h5 class="modal-title" id="modal_initialCenterTitle" %>Article was successfully created. 
+          button.close[type="button" data-dismiss="modal" aria-label="Close"]
+            span[aria-hidden="true"]
+              | ×
+        .modal-body
+          |  記事固有URL 
+          .form-control.with_copy
+            = request.url
+            |  <button type="button" class="far fa-clipboard btn-copy" id="btn-copy-modal" data-clipboard-text="
+            = request.url
+            | ">
+          |  記事固有キー（記事の編集、削除に必要です） 
+          .form-control.with_copy
+            = msg
+            |  <button type="button" class="far fa-clipboard btn-copy" id="btn-copy-modal" data-clipboard-text="
+            = msg
+            | ">
+        .modal-footer
+          button.btn.btn-primary[type="button" data-dismiss="modal"]
+            | Confirmed

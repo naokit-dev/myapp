@@ -1,0 +1,15 @@
+#user_show.container.user-page
+  .row
+    .col-md-12
+      nav.navbar
+        h2
+          = "#{@user.username}'s articles"
+        = form_tag user_path(@user), :method => 'get', class: "form-inline" do
+          = text_field_tag :search, params[:search], class: "form-control"
+          = submit_tag "Search", :name => nil, class: "btn btn-primary"
+      .articles-header
+        h4
+          i.fas.fa-history
+          |  Most recent articles
+      = render @articles, article: @article
+      = paginate @articles
